@@ -1,5 +1,6 @@
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 import { ProductProps } from '../data/dataProducts';
+import { API_BASE_URL } from './StoreContext';
 
 interface AdminContextProps {
     products: ProductProps[];
@@ -24,7 +25,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({
 
     // Get data from API
     const fetchProducts = async () => {
-        fetch('http://localhost:5001/products')
+        fetch(`${API_BASE_URL}/products`)
             .then((response) => response.json())
             .then((data) => setProducts(data))
             .catch((error) => console.error('Error fetching products:', error));
@@ -32,7 +33,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({
 
     // Delete product
     const handleDeleteProduct = (id: number) => {
-        fetch(`http://localhost:5001/products/${id}`, { method: 'DELETE' })
+        fetch(`${API_BASE_URL}/products${id}`, { method: 'DELETE' })
             .then(() =>
                 setProducts(products.filter((product) => product.id !== id)),
             )
@@ -41,7 +42,7 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({
 
     // Add product
     const handleAddProduct = () => {
-        fetch('http://localhost:5001/products', {
+        fetch(`${API_BASE_URL}/products`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -110,7 +110,7 @@ const Checkout = () => {
             address: '',
             email: '',
             phone: '',
-            message: '',
+            // message: '',
             paymentMethod: 'cod',
         });
 

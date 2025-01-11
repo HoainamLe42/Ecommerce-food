@@ -1,3 +1,5 @@
+export const API_BASE_URL = 'https://qx6g8d-8080.csb.app';
+
 import {
     ReactNode,
     createContext,
@@ -67,7 +69,7 @@ export const ShoppingCartProvider = ({
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:5001/products');
+                const response = await fetch(`${API_BASE_URL}/products`);
                 if (!response.ok) {
                     throw new Error(`HTTP lỗi! status: ${response.status}`);
                 }

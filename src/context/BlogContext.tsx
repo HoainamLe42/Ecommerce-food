@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { BlogTypes } from '../types/BlogTypes';
+import { API_BASE_URL } from './StoreContext';
 
 // Định nghĩa kiểu dữ liệu cho context
 interface BlogContextProps {
@@ -36,7 +37,7 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
 
     const fetchBlogPosts = async () => {
         try {
-            const response = await fetch('http://localhost:5001/blogs');
+            const response = await fetch(`${API_BASE_URL}/blogs`);
             if (!response.ok) {
                 throw new Error(`HTTP lỗi! status: ${response.status}`);
             }

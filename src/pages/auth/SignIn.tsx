@@ -7,6 +7,7 @@ import config from '../../config';
 import { useAuth } from '../../context/AuthContext';
 import { Eye, EyeOff } from 'lucide-react';
 import { UserFormData } from '../../types/admin/UserTypes';
+import { API_BASE_URL } from '../../context/StoreContext';
 
 const SignIn = () => {
     const [formData, setFormData] = useState<UserFormData>({
@@ -37,7 +38,7 @@ const SignIn = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:5001/users');
+            const response = await fetch(`${API_BASE_URL}/users`);
             const users = await response.json();
 
             const user = users.find(

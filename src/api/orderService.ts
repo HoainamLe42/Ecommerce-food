@@ -1,4 +1,4 @@
-import { CartItem } from '../context/StoreContext';
+import { API_BASE_URL, CartItem } from '../context/StoreContext';
 
 export type OrderProps = {
     id: number;
@@ -12,7 +12,7 @@ export type OrderProps = {
 
 export const submitOrder = async (order: OrderProps) => {
     try {
-        const response = await fetch('http://localhost:5001/orders', {
+        const response = await fetch(`${API_BASE_URL}/orders`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(order),

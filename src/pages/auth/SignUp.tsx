@@ -4,6 +4,7 @@ import Container from '../../components/Container';
 import { useState } from 'react';
 import Popup from '../../components/Popup';
 import { NewUser } from '../../types/admin/UserTypes';
+import { API_BASE_URL } from '../../context/StoreContext';
 
 const SignUp: React.FC<NewUser> = () => {
     const [formData, setFormData] = useState<NewUser>({
@@ -64,7 +65,7 @@ const SignUp: React.FC<NewUser> = () => {
                 // Xét mặc định vai trò của Users
 
                 // Kiểm tra trùng lặp
-                const response = await fetch('http://localhost:5001/users');
+                const response = await fetch(`${API_BASE_URL}/users`);
                 const existingUsers: NewUser[] = await response.json();
 
                 const userExists = existingUsers.some(
@@ -89,16 +90,13 @@ const SignUp: React.FC<NewUser> = () => {
                 };
 
                 // Thêm tài khoản mới
-                const createResponse = await fetch(
-                    'http://localhost:5001/users',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(newUser),
+                const createResponse = await fetch(`${API_BASE_URL}/users`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
                     },
-                );
+                    body: JSON.stringify(newUser),
+                });
 
                 if (createResponse.ok) {
                     setMessage('Đăng ký tài khoản thành công.');

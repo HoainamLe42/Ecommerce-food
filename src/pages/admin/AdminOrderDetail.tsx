@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import AdminLayout from '../../layouts/AdminLayout';
 import { formatCurrency, formatDate } from '../../utils/CurrencyFormatter';
 import { OrderDetails } from '../../types/admin/OrderTypes';
+import { API_BASE_URL } from '../../context/StoreContext';
 
 const AdminOrderDetail = () => {
     const { id } = useParams();
@@ -12,9 +13,7 @@ const AdminOrderDetail = () => {
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const response = await fetch(
-                    `http://localhost:5001/orders?id=${id}`,
-                );
+                const response = await fetch(`${API_BASE_URL}/orders?id=${id}`);
                 if (!response.ok) {
                     throw new Error(`HTTP lỗi! status: ${response.status}`);
                 }
@@ -65,7 +64,7 @@ const AdminOrderDetail = () => {
                 </thead>
                 <tbody>
                     {orders?.map((data) =>
-                        data.items.map((item, index) => (
+                        data.items?.map((item, index) => (
                             <tr key={item.id}>
                                 <td className="text-center border border-gray-300 px-4 py-2">
                                     {index + 1}

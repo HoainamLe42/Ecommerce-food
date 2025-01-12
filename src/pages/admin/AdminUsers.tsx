@@ -63,19 +63,16 @@ const AdminUsers = () => {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-5 gap-3 mt-7">
+                    <div className="flex gap-3 mt-7">
                         {users.map((user) => {
                             if (user.role === 'user') {
                                 return (
                                     <div
                                         key={user.id}
-                                        className="relative flex gap-3 items-start p-4 bg-gray-200 shadow-lg rounded-md group cursor-pointer"
+                                        className="relative flex flex-1 gap-3 items-start p-4 bg-gray-200 shadow-lg rounded-md group cursor-pointer"
                                     >
                                         <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary group-hover:block"></div>
                                         <div>
-                                            <p className="text-lg font-semibold">
-                                                {user.username}
-                                            </p>
                                             <p className="text-wrap text-secondary-text">
                                                 {user.email}
                                             </p>
@@ -85,7 +82,6 @@ const AdminUsers = () => {
                                         </div>
                                         <div className="absolute bottom-[5%] right-[5%] px-2 py-1 bg-white rounded-md transition-all duration-300 opacity-0 group-hover:opacity-100">
                                             <p>{user.password}</p>
-                                            <p>{user.phone}</p>
                                         </div>
                                     </div>
                                 );

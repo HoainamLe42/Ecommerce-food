@@ -4,7 +4,13 @@ export type FooterLink = {
 };
 
 export type SocialLink = {
-    name: string;
+    icon: string;
+    url: string;
+    color: string;
+};
+
+export type ServiceLink = {
+    label: string;
     url: string;
 };
 
@@ -18,5 +24,6 @@ export type FooterData = {
     };
     socialLinks: SocialLink[];
     footerLinks: FooterLink[];
+    servicesLinks: ServiceLink[];
     copyright: string;
 };

@@ -8,6 +8,7 @@ import { useShoppingCart } from '../context/StoreContext';
 import { formatCurrency } from '../utils/CurrencyFormatter';
 import { useAuth } from '../context/AuthContext';
 import config from '../config';
+import Popup from '../components/Popup';
 
 const tabs = [
     { key: 'description', label: 'Mô tả' },
@@ -26,16 +27,16 @@ const Detail = () => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const { user } = useAuth();
     const navigate = useNavigate();
+    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+
+    const handleOpenPopup = () => setIsPopupOpen(true);
+    const handleClosePopup = () => setIsPopupOpen(false);
 
     //  Chuyển id thành dạng number cho dễ thao tác
     const foodId = Number(id);
 
     // Lấy chi tiết sản phẩm từ id
     const food = foods?.find((food) => Number(food.id) === Number(id));
-
-    console.log(typeof foods[0]?.id);
-    console.log('foodItem: ', typeof food?.id);
-    console.log(food?.name);
 
     // Data fake
     const description =
@@ -103,11 +104,11 @@ const Detail = () => {
                                 </p>
                                 <div className="border-[1px] sm:max-w-[130px] w-full justify-between border-gray-300 inline-flex items-center gap-3 rounded-md py-2 px-5">
                                     <span
-                                        onClick={() =>
+                                        onClick={() => {
                                             decreaseCartQuantity(
                                                 Number(food?.id),
-                                            )
-                                        }
+                                            );
+                                        }}
                                         className="w-7 h-7 flex items-center justify-center cursor-pointer rounded-md"
                                     >
                                         -
@@ -131,6 +132,7 @@ const Detail = () => {
                                             alert(
                                                 'Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng',
                                             );
+                                            handleOpenPopup();
                                             return;
                                         } else {
                                             navigate(config.routes.cart);
@@ -197,7 +199,6 @@ const Detail = () => {
                     </div>
 
                     {/* Bottom */}
-
                     <div className="mt-10">
                         {/* Tabs header */}
                         <ul className="text-sm h-[50px] text-secondary-text flex sm:justify-start justify-around border-[1px] border-gray-300">
@@ -244,6 +245,10 @@ const Detail = () => {
                     </div>
                 </Container>
             </div>
+            <Popup isOpen={isPopupOpen} onClose={handleClosePopup}>
+                <p className="p-3">Chưa đăng nhập ai cho bạn mua. !!</p>
+            </Popup>
+            ;
         </div>
     );
 };

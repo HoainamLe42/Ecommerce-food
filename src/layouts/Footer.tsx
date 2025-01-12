@@ -29,18 +29,27 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Social Links */}
                     <div className="mb-4 md:mb-0">
-                        <h4 className="text-lg font-semibold mb-2">
-                            Mạng xã hội
+                        <h4 className="text-base font-semibold mb-2 uppercase">
+                            Theo dõi chúng tôi
                         </h4>
-                        <ul className="flex flex-col gap-2 text-gray-600">
-                            {footerData.socialLinks.map((social, index) => (
-                                <li
-                                    key={index}
-                                    className="hover:text-primary transition-all duration-100"
-                                >
-                                    <a href={social.url}>{social.name}</a>
+                        <ul className="flex flex-col gap-3 text-gray-600 text-sm">
+                            {footerData.footerLinks.map((link, index) => (
+                                <li key={index}>
+                                    <a href={link.url}>{link.label}</a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="mb-4 md:mb-0">
+                        <h4 className="text-base font-semibold mb-2 uppercase">
+                            Dịch vụ khách hàng
+                        </h4>
+                        <ul className="flex flex-col gap-3 text-gray-600 text-sm">
+                            {footerData.servicesLinks.map((link, index) => (
+                                <li key={index}>
+                                    <a href={link.url}>{link.label}</a>
                                 </li>
                             ))}
                         </ul>
@@ -48,33 +57,23 @@ const Footer = () => {
 
                     {/* Social Links */}
                     <div className="mb-4 md:mb-0">
-                        <h4 className="text-lg font-semibold mb-2">
-                            Mạng xã hội
+                        <h4 className="text-base font-semibold mb-2 uppercase">
+                            Theo dõi chúng tôi
                         </h4>
-                        <ul className="flex flex-col gap-2 text-gray-600">
+                        <ul className="flex gap-3 text-gray-600">
                             {footerData.socialLinks.map((social, index) => (
                                 <li
                                     key={index}
-                                    className="hover:text-primary transition-all duration-100"
+                                    className={`h-9 w-9 flex items-center justify-center rounded-md hover:text-primary transition-all duration-100`}
+                                    style={{ backgroundColor: social.color }}
                                 >
-                                    <a href={social.url}>{social.name}</a>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
-                    {/* Social Links */}
-                    <div className="mb-4 md:mb-0">
-                        <h4 className="text-lg font-semibold mb-2">
-                            Mạng xã hội
-                        </h4>
-                        <ul className="flex flex-col gap-2 text-gray-600">
-                            {footerData.socialLinks.map((social, index) => (
-                                <li
-                                    key={index}
-                                    className="hover:text-primary transition-all duration-100"
-                                >
-                                    <a href={social.url}>{social.name}</a>
+                                    <a href={social.url}>
+                                        <img
+                                            src={social.icon}
+                                            alt=""
+                                            className="w-3"
+                                        />
+                                    </a>
                                 </li>
                             ))}
                         </ul>

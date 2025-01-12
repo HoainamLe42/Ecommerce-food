@@ -409,7 +409,7 @@ const Checkout = () => {
             </div>
 
             <Popup isOpen={isPopupOpen} onClose={handleClosePopup}>
-                Đặt hàng thành công.
+                <p className="p-3">Đặt hàng thành công.</p>
             </Popup>
         </div>
     );

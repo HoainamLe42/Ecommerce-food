@@ -5,7 +5,7 @@
             "name": "The Burger Cafe",
             "type": "Burger",
             "price": 75000,
-            "image": "/images/products/burger.png",
+            "image": "/images/products/burger.webp",
             "rating": 4.6
         },
         {
@@ -13,7 +13,7 @@
             "name": "The Pizza Hut",
             "type": "Pizza",
             "price": 80000,
-            "image": "/images/products/pizza.png",
+            "image": "/images/products/pizza.webp",
             "rating": 4.5
         },
         {
@@ -21,7 +21,7 @@
             "name": "Caprese Sandwich Hub",
             "type": "Sandwiches",
             "price": 55000,
-            "image": "/images/products/sandwick.png",
+            "image": "/images/products/sandwick.webp",
             "rating": 4.1
         },
         {
@@ -29,7 +29,7 @@
             "name": "Chicken",
             "type": "chicken",
             "price": 45000,
-            "image": "/images/products/wings.png",
+            "image": "/images/products/wings.webp",
             "rating": 4.6
         },
         {
@@ -37,7 +37,7 @@
             "name": "The Coffee Express",
             "type": "Coffee",
             "price": 49000,
-            "image": "/images/products/coffee.png",
+            "image": "/images/products/coffee.webp",
             "rating": 4.6
         },
         {
@@ -45,7 +45,7 @@
             "name": "The Biryani House",
             "type": "Dish",
             "price": 75000,
-            "image": "/images/products/biryani.png",
+            "image": "/images/products/biryani.webp",
             "rating": 4
         },
         {
@@ -53,7 +53,7 @@
             "name": "Fast Food Hub",
             "type": "Fast Food",
             "price": 75000,
-            "image": "/images/products/fast_food_hub.png",
+            "image": "/images/products/fast_food_hub.webp",
             "rating": 4.6
         },
         {
@@ -61,7 +61,7 @@
             "name": "Fast Food Cafe",
             "type": "Fast Food",
             "price": 55000,
-            "image": "/images/products/fast_food_cafe.png",
+            "image": "/images/products/fast_food_cafe.webp",
             "rating": 4.8
         },
         {
@@ -69,7 +69,7 @@
             "name": "Fried Chicken Hub",
             "type": "chicken",
             "price": 95000,
-            "image": "/images/products/fried_chicken.png",
+            "image": "/images/products/fried_chicken.webp",
             "rating": 4.6
         },
         {
@@ -77,7 +77,7 @@
             "name": "The Steak Cafe",
             "type": "Fast Food",
             "price": 65000,
-            "image": "/images/products/steak_cafe.png",
+            "image": "/images/products/steak_cafe.webp",
             "rating": 4.6
         },
         {
@@ -85,7 +85,7 @@
             "name": "The Pizza King",
             "type": "Pizza",
             "price": 99000,
-            "image": "/images/products/pizza_king.png",
+            "image": "/images/products/pizza_king.webp",
             "rating": 4.6
         },
         {
@@ -93,7 +93,7 @@
             "name": "The French Fries",
             "type": "Fast Food",
             "price": 79000,
-            "image": "/images/products/fries.png",
+            "image": "/images/products/fries.webp",
             "rating": 4.6
         },
         {
@@ -101,7 +101,7 @@
             "name": "The Noodles Cafe",
             "type": "noodles",
             "price": 85000,
-            "image": "/images/products/noodles.png",
+            "image": "/images/products/noodles.webp",
             "rating": 4.6
         },
         {
@@ -109,7 +109,7 @@
             "name": "The Egg Chicken Rice",
             "type": "Dish",
             "price": 7.5,
-            "image": "/images/products/egg_chicken_rice.png",
+            "image": "/images/products/egg_chicken_rice.webp",
             "rating": 4.6
         },
         {
@@ -117,7 +117,7 @@
             "name": "The French King",
             "type": "Fast Food",
             "price": 55000,
-            "image": "/images/products/fries_king.png",
+            "image": "/images/products/fries_king.webp",
             "rating": 4.6
         },
         {
@@ -125,7 +125,7 @@
             "name": "The Pasta Cafe",
             "type": "Fast Food",
             "price": 45000,
-            "image": "/images/products/pasta_cafe.png",
+            "image": "/images/products/pasta_cafe.webp",
             "rating": 4.6
         },
         {
@@ -133,7 +133,7 @@
             "name": "The Rice House",
             "type": "Dish",
             "price": 55000,
-            "image": "/images/products/rice_house.png",
+            "image": "/images/products/rice_house.webp",
             "rating": 4.6
         },
         {
@@ -141,7 +141,7 @@
             "name": "The Noodle",
             "type": "noodles",
             "price": 85000,
-            "image": "/images/products/noodle_cafe.png",
+            "image": "/images/products/noodle_cafe.webp",
             "rating": 4.6
         }
     ],
@@ -376,7 +376,7 @@
             "title": "Top 10 vegetarian and vegan restaurants in your city.",
             "desc": "Looking to add more leafy greens and plant-based burgers to your plate this fall? Today, in celebration of World Vegetarian Day on October 1, we discover few restaurants for you.",
             "name": "David Warner",
-            "img": "/images/blog/img-01.png",
+            "img": "/images/blog/img-01.webp",
             "author_avatar": "/images/authorAvatar/author-01.png"
         },
         {
@@ -386,7 +386,7 @@
             "title": "Top 10 vegetarian and vegan restaurants in your city.",
             "desc": "Looking to add more leafy greens and plant-based burgers to your plate this fall? Today, in celebration of World Vegetarian Day on October 1, we discover few restaurants for you.",
             "name": "Neymar Jr",
-            "img": "/images/blog/img-02.png",
+            "img": "/images/blog/img-02.webp",
             "author_avatar": "/images/authorAvatar/author-01.png"
         },
         {
@@ -396,7 +396,7 @@
             "title": "Most popular vegetarian and vegan restaurants in your city.",
             "desc": "Looking to add more leafy greens and plant-based burgers to your plate this fall? Today, in celebration of World Vegetarian Day on October 1, we discover few restaurants for you.",
             "name": "Ronaldo Cr7",
-            "img": "/images/blog/img-03.png",
+            "img": "/images/blog/img-03.webp",
             "author_avatar": "/images/authorAvatar/author-01.png"
         },
         {
@@ -406,7 +406,7 @@
             "title": "Top 10 vegetarian and vegan restaurants in your city.",
             "desc": "Looking to add more leafy greens and plant-based burgers to your plate this fall? Today, in celebration of World Vegetarian Day on October 1, we discover few restaurants for you.",
             "name": "HoaiNam Le",
-            "img": "/images/blog/img-04.png",
+            "img": "/images/blog/img-04.webp",
             "author_avatar": "/images/authorAvatar/author-01.png"
         }
     ]

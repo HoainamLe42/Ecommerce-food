@@ -12,6 +12,7 @@ interface BlogContextProps {
     filteredBlogs: BlogTypes[];
     selectedType: string;
     setSelectedType: React.Dispatch<React.SetStateAction<string>>;
+    loading: boolean;
 }
 
 // Tạo Context
@@ -34,9 +35,11 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
     const [filteredBlogPosts, setFilteredBlogPosts] = useState<BlogTypes[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [selectedType, setSelectedType] = useState('all');
+    const [loading, setLoading] = useState<boolean>(true);
 
     const fetchBlogPosts = async () => {
         try {
+            setLoading(true);
             const response = await fetch(`${API_BASE_URL}/blogs`);
             if (!response.ok) {
                 throw new Error(`HTTP lỗi! status: ${response.status}`);
@@ -47,6 +50,8 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
             setBlogPosts(data);
         } catch (error) {
             console.error('Lỗi khi tải Blogs:', error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -57,16 +62,21 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
     const filteredBlogs = blogPosts.filter((blog) => {
         const selectQuery = blog.title
             .toLocaleLowerCase()
-            .includes(searchQuery.toLocaleLowerCase());
+            .includes(searchQuery?.toLocaleLowerCase());
 
         const selectType = selectedType === 'all' || blog.name === selectedType;
 
         return selectQuery || selectType;
     });
 
+    useEffect(() => {
+        setFilteredBlogPosts(filteredBlogs);
+    }, [selectedType, searchQuery]);
+
     return (
         <BlogContext.Provider
             value={{
+                loading,
                 blogPosts,
                 filteredBlogPosts,
                 setFilteredBlogPosts,

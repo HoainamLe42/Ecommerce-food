@@ -9,6 +9,7 @@ import {
 } from 'react';
 import { useLocalStorage } from '../hook/useLocalStorage';
 import { Product } from '../types/ProductTypes';
+import Popup from '../components/Popup';
 
 export type CartItem = Product & {
     quantity: number;
@@ -39,6 +40,7 @@ interface ShoppingCartContextProps {
     setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
     totalItemsInCart: () => number;
     getItemCartAmount: () => number;
+    loading: boolean;
 }
 
 const ShoppingCartContext = createContext<ShoppingCartContextProps | undefined>(
@@ -58,6 +60,7 @@ export const ShoppingCartProvider = ({
 }: ShoppingCartProviderProps) => {
     const [foods, setFoods] = useState<Product[]>([]);
     const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
     const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
         'shopping-cart',
         [],
@@ -65,10 +68,12 @@ export const ShoppingCartProvider = ({
     const [selectedType, setSelectedType] = useState<string>('All');
     const [filteredFoods, setFilteredFoods] = useState<Product[]>(foods);
     const [selectedValue, setSelectedValue] = useState<string>('all');
+
     // Get data
     useEffect(() => {
         const fetchProducts = async () => {
             try {
+                setLoading(true);
                 const response = await fetch(`${API_BASE_URL}/products`);
                 if (!response.ok) {
                     throw new Error(`HTTP lỗi! status: ${response.status}`);
@@ -81,6 +86,8 @@ export const ShoppingCartProvider = ({
                 setFeaturedProducts(featured);
             } catch (error) {
                 console.error('Lỗi khi tải sản phẩm:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -222,6 +229,7 @@ export const ShoppingCartProvider = ({
 
     // value
     const value = {
+        loading,
         foods,
         featuredProducts,
         filteredFoods,

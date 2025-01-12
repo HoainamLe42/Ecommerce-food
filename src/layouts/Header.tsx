@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { CircleX, MenuIcon, ShoppingCart } from 'lucide-react';
 
 import Logo from '../assets/logo.png';
@@ -11,6 +11,7 @@ import { formatCurrency } from '../utils/CurrencyFormatter';
 import config from '../config';
 import { UserAvatar, useAuth } from '../context/AuthContext';
 import { useShoppingCart } from '../context/StoreContext';
+import MobileMenu from '../components/MobileMenu';
 
 const Header = () => {
     const { cartItems, totalItemsInCart, removeFromCart, getItemCartAmount } =
@@ -18,6 +19,11 @@ const Header = () => {
     const { user } = useAuth();
     const [isActiveScroll, setIsActiveScroll] = useState<boolean>(false);
     const [isOpenDropdown, setIsOpenDropDown] = useState<boolean>(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleClosePopup = () => {
+        setIsMenuOpen(false);
+    };
 
     const handleScroll = () => {
         setIsActiveScroll(window.scrollY > 150);
@@ -217,7 +223,11 @@ const Header = () => {
                     </div>
 
                     <div className="block md:hidden">
-                        <MenuIcon />
+                        <MenuIcon onClick={() => setIsMenuOpen(!isMenuOpen)} />
+                        <MobileMenu
+                            isOpen={isMenuOpen}
+                            onClose={setIsMenuOpen}
+                        />
                     </div>
                 </div>
             </Container>

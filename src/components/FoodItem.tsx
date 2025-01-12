@@ -1,14 +1,19 @@
 import { useState } from 'react';
-import { Star } from 'lucide-react';
+import { ShoppingCart, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 import { formatCurrency } from '../utils/CurrencyFormatter';
 import Button from './Button';
 import { Product } from '../types/ProductTypes';
+import { useShoppingCart } from '../context/StoreContext';
 
 const FoodItem = ({ id, name, image, price, type }: Product) => {
+    const { foods, increaseCartQuantity } = useShoppingCart();
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const navigate = useNavigate();
+
+    // Lấy chi tiết sản phẩm từ id
+    const food = foods?.find((food) => Number(food.id) === Number(id));
 
     const handleClick = () => {
         navigate(`/detail/${id}`);
@@ -21,6 +26,7 @@ const FoodItem = ({ id, name, image, price, type }: Product) => {
                     <div className="absolute inset-0 animate-pulse bg-gray-300 rounded-md"></div>
                 )}
                 <img
+                    onClick={handleClick}
                     src={image}
                     alt=""
                     className={`h-full w-full mx-auto object-cover transition-opacity duration-300 ${
@@ -43,10 +49,10 @@ const FoodItem = ({ id, name, image, price, type }: Product) => {
                 <Star size="18" color="red" />
             </div>
             <Button
-                onClick={handleClick}
-                className="hidden group-hover:block transition-all duration-100 absolute right-5 bottom-5 px-5"
+                onClick={() => increaseCartQuantity(Number(food?.id))}
+                className="hidden group-hover:block transition-all duration-100 absolute right-5 bottom-5 p-2"
             >
-                Đặt ngay
+                <ShoppingCart color="white" size="20" />
             </Button>
         </div>
     );

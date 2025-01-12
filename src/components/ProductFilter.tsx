@@ -40,16 +40,14 @@ const ProductFilter = () => {
                                 : 'text-inherit'
                         }`}
                     >
-                        <div className="h-12 w-12 flex items-center justify-center rounded-full bg-yellow-100">
+                        <div className="h-16 w-16 flex items-center justify-center rounded-full bg-yellow-100">
                             <img
                                 src={item.image}
                                 alt=""
                                 className="h-7 w-7 object-cover cursor-pointer"
                             />
                         </div>
-                        <p className="font-semibold text-nowrap text-sm">
-                            {item.name}
-                        </p>
+                        <p className="text-nowrap text-sm">{item.name}</p>
                     </li>
                 ))}
 
@@ -77,7 +75,7 @@ const ProductFilter = () => {
                     >
                         <div className="h-12 w-12 flex items-center justify-center rounded-full bg-yellow-100">
                             <img
-                                src={item.url}
+                                src={item.image}
                                 alt=""
                                 className="h-7 w-7 object-cover cursor-pointer"
                             />

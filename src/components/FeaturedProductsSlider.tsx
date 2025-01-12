@@ -64,7 +64,7 @@ const FeaturedProductsSlider = () => {
                         className="absolute z-10 left-[2%] top-1/2 transform -translate-y-1/2 p-1 disabled:opacity-80"
                         disabled={startIndex === 0}
                     >
-                        <ChevronLeft size={16} />
+                        <ChevronLeft size={22} />
                     </Button>
                     <Button
                         onClick={handleNextBtn}
@@ -73,7 +73,7 @@ const FeaturedProductsSlider = () => {
                             startIndex + visibleItems >= featuredProducts.length
                         }
                     >
-                        <ChevronRight size={16} />
+                        <ChevronRight size={22} />
                     </Button>
 
                     {/* CardItems */}

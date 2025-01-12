@@ -9,6 +9,8 @@ import HotlineButton from './components/HotlineButton';
 import { ShoppingCartProvider } from './context/StoreContext';
 import { AdminProvider } from './context/AdminContext';
 import { BlogProvider } from './context/BlogContext';
+import { Suspense } from 'react';
+import LoadingSpinner from './components/LoadingSpinner';
 
 const App: React.FC = () => {
     return (
@@ -17,28 +19,30 @@ const App: React.FC = () => {
                 <BlogProvider>
                     <Router>
                         <ScrollToTop />
-                        <Routes>
-                            {publicRoutes.map((route, index) => {
-                                const Page = route.component;
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <Routes>
+                                {publicRoutes.map((route, index) => {
+                                    const Page = route.component;
 
-                                let Layout =
-                                    route.layout === null
-                                        ? Fragment
-                                        : route.layout || DefaultLayout;
+                                    let Layout =
+                                        route.layout === null
+                                            ? Fragment
+                                            : route.layout || DefaultLayout;
 
-                                return (
-                                    <Route
-                                        key={index}
-                                        path={route.path}
-                                        element={
-                                            <Layout>
-                                                <Page />
-                                            </Layout>
-                                        }
-                                    />
-                                );
-                            })}
-                        </Routes>
+                                    return (
+                                        <Route
+                                            key={index}
+                                            path={route.path}
+                                            element={
+                                                <Layout>
+                                                    <Page />
+                                                </Layout>
+                                            }
+                                        />
+                                    );
+                                })}
+                            </Routes>
+                        </Suspense>
                         <ScrollToTopButton />
                         <HotlineButton />
                     </Router>

@@ -10,11 +10,12 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 const AdminOrderDetail = () => {
     const { id } = useParams();
     const [orders, setOrders] = useState<OrderDetails[] | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
         const fetchOrder = async () => {
             try {
+                setLoading(true);
                 const response = await fetch(`${API_BASE_URL}/orders?id=${id}`);
                 if (!response.ok) {
                     throw new Error(`HTTP lỗi! status: ${response.status}`);

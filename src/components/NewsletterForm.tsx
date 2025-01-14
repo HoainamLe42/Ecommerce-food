@@ -14,22 +14,17 @@ const NewsletterForm = () => {
     const [error, setError] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean>(false);
 
-    console.log(error);
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
         setError(false);
         setSuccess(false);
     };
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         if (!validateEmail(email)) {
             setError(true);
             return;
         }
-
         setSuccess(true);
         setError(false);
     };

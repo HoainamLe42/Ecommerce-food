@@ -37,6 +37,8 @@ const AdminOrdersManager = React.lazy(
 const AdminProducts = React.lazy(
     () => import('../pages/admin/AdminProductsManager'),
 );
+
+const BannerManager = React.lazy(() => import('../pages/admin/BannerManager'));
 const AdminUsers = React.lazy(() => import('../pages/admin/AdminUsers'));
 
 type Route = {
@@ -79,6 +81,12 @@ const publicRoutes: Route[] = [
     {
         path: config.routes.adminUsers,
         component: AdminUsers,
+        layout: null,
+    },
+
+    {
+        path: config.routes.bannerManager,
+        component: BannerManager,
         layout: null,
     },
     {

@@ -3,24 +3,14 @@ import Button from '../components/Button';
 import Container from '../components/Container';
 import NewsletterForm from '../components/NewsletterForm';
 import FeaturedProductsSlider from '../components/FeaturedProductsSlider';
-import Popup from '../components/Popup';
-import { useState } from 'react';
 import { useShoppingCart } from '../context/StoreContext';
 import LoadingSpinner from '../components/LoadingSpinner';
+import Banner from '../components/Home/Banner';
+import { useEffect, useState } from 'react';
 
 const Home = () => {
-    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
     const { loading } = useShoppingCart();
 
-    const handleOpenPopup = () => setIsPopupOpen(true);
-    const handleClosePopup = () => setIsPopupOpen(false);
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        alert('Chúng tôi sẽ gửi phiếu giảm giá trong email.');
-        handleClosePopup();
-    };
     return (
         <div>
             {loading ? (
@@ -92,97 +82,7 @@ const Home = () => {
                         </Container>
                     </div>
                     {/* Banner */}
-                    <section className="bg-white py-6">
-                        <Container>
-                            <div
-                                className="grid grid-cols-2 gap-5"
-                                onClick={handleOpenPopup}
-                            >
-                                <div className="">
-                                    <img
-                                        src="/images/banner/box_1.webp"
-                                        alt=""
-                                        className="w-full h-full object-cover cursor-pointer"
-                                    />
-                                </div>
-                                <div className="grid grid-rows-2 gap-5">
-                                    <div className="">
-                                        <img
-                                            src="/images/banner/box_2.webp"
-                                            alt=""
-                                            className="w-full h-full object-cover cursor-pointer"
-                                        />
-                                    </div>
-                                    <div>
-                                        <img
-                                            src="/images/banner/box_3.webp"
-                                            alt=""
-                                            className="w-full h-full object-cover cursor-pointer"
-                                        />
-                                    </div>
-                                    <div className="col-span-2">
-                                        <img
-                                            src="/images/banner/box_4.webp"
-                                            alt=""
-                                            className="w-full h-full object-cover cursor-pointer"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                            <Popup
-                                isOpen={isPopupOpen}
-                                onClose={handleClosePopup}
-                                sizePopup="570px"
-                            >
-                                <img
-                                    src="/images/banner/bg-flashsale.webp"
-                                    alt=""
-                                    className="block w-full object-cover"
-                                />
-                                {/* content */}
-                                <div className="my-7 text-center">
-                                    <p className="uppercase text-3xl text-orange-600">
-                                        Unlock
-                                    </p>
-                                    <p className="uppercase text-[64px] font-semibold">
-                                        20% OFF
-                                    </p>
-                                    <p className="uppercase text-3xl font-bold text-green-600">
-                                        Đơn hàng của bạn
-                                    </p>
-
-                                    <form
-                                        onSubmit={handleSubmit}
-                                        className="px-5 mt-5"
-                                    >
-                                        <div className="border rounded-md overflow-hidden">
-                                            <label htmlFor=""></label>
-                                            <input
-                                                type="date"
-                                                className="w-full p-3 uppercase rounded-md text-lg text-secondary-text text-nowrap placeholder:text-secondary-text"
-                                            />
-                                        </div>
-
-                                        <div className="border rounded-md overflow-hidden mt-5">
-                                            <label htmlFor=""></label>
-                                            <input
-                                                type="email"
-                                                className="w-full p-3 rounded-md text-lg placeholder:text-secondary-text"
-                                                placeholder="Nhập email..."
-                                            />
-                                        </div>
-
-                                        <Button
-                                            type="submit"
-                                            className="uppercase mt-5 w-full p-3"
-                                        >
-                                            Xác nhận
-                                        </Button>
-                                    </form>
-                                </div>
-                            </Popup>
-                        </Container>
-                    </section>
+                    <Banner />
                     {/* FeaturedProductsSlider */}
                     <FeaturedProductsSlider />
 

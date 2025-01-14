@@ -10,6 +10,7 @@ import {
 import { useLocalStorage } from '../hook/useLocalStorage';
 import { Product } from '../types/ProductTypes';
 import Popup from '../components/Popup';
+import config from '../config';
 
 export type CartItem = Product & {
     quantity: number;
@@ -144,8 +145,17 @@ export const ShoppingCartProvider = ({
     const increaseCartQuantity = (productId: number) => {
         // Get useId from localStorage in useAuth()
         const userId = localStorage.getItem('userId');
-        if (!userId)
-            return alert('Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng');
+        if (!userId) {
+            const redirect = window.confirm(
+                'Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng. Đăng nhập ngay?',
+            );
+
+            if (redirect) {
+                window.location.href = `${config.routes.signIn}`;
+            }
+
+            return;
+        }
 
         // Tìm sản phẩm từ danh sách foods
         const food = foods?.find((item) => item.id === productId);

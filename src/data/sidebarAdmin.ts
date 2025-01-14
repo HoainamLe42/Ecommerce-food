@@ -1,5 +1,6 @@
 import {
     House,
+    NotebookTabs,
     ShoppingCart,
     SquareChartGantt,
     UsersRound,
@@ -26,5 +27,11 @@ export const sidebarAdmin: SidebarAdmin[] = [
         title: 'Quản lý người dùng',
         url: '/admin/users',
         icon: UsersRound,
+    },
+    {
+        id: 5,
+        title: 'Quản lý banner',
+        url: '/admin/banner-manager',
+        icon: NotebookTabs,
     },
 ];

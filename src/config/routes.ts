@@ -15,6 +15,7 @@ const routes = {
     adminOrderDetail: '/admin/orders/:id',
     adminUsers: '/admin/users',
     userProfile: '/user',
+    bannerManager: '/admin/banner-manager',
 };
 
 export default routes;

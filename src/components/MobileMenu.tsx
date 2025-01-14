@@ -2,10 +2,11 @@ import { LogOut, User } from 'lucide-react';
 
 import Logo from '../assets/logo.png';
 import { listNav } from '../data/navData';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import Button from './Button';
 import config from '../config';
 import { useAuth } from '../context/AuthContext';
+import { useEffect } from 'react';
 
 type MobileMenuProps = {
     isOpen: boolean;
@@ -15,15 +16,28 @@ type MobileMenuProps = {
 const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
     const { user, logout } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Đóng menu khi route thay đổi
+    useEffect(() => {
+        onClose(false);
+    }, [location]);
 
     return (
         <div
-            className={`fixed top-0 left-0 bottom-0 z-10 transition-all duration-300 ${
+            className={`fixed top-0 left-0 bottom-0 z-50 transition-all duration-[400ms] ${
                 isOpen ? 'w-[60vw]' : 'w-0'
             } bg-white`}
         >
             {isOpen && (
-                <div className="p-4 bg-[#FFFAE3] shadow-lg h-full">
+                <div
+                    onClick={() => onClose(false)}
+                    className="fixed inset-0 z-10 bg-black bg-opacity-50"
+                ></div>
+            )}
+
+            {isOpen && (
+                <div className="relative z-[999] p-4 bg-[#FFFAE3] shadow-lg h-full">
                     <div>
                         <img src={Logo} alt="" />
                     </div>

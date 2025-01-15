@@ -1,0 +1,62 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE files
+.vscode/
+.idea/
+
+# TypeScript
+*.tsbuildinfo
+
+# Mac system files
+.DS_Store
+
+# Package locks
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Coverage directory used by testing tools
+coverage/
+
+# Vite cache
+.vite/
+
+# React Testing Library
+.cypress/
+
+# Temporary files
+*.tmp
+*.temp
+
+# System Thumbnails
+Thumbs.db
+
+# Debugging files
+*.log
+
+# Miscellaneous
+*.bak
+*.swp
+*.swpx
+
+# Exclude Firebase local data (if using Firebase Emulator)
+firebase-debug.log
+firestore-export.json

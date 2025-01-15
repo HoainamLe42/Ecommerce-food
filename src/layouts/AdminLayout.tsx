@@ -4,7 +4,6 @@ import { AlignJustify } from 'lucide-react';
 import Logo from '../assets/logo.png';
 import { sidebarAdmin } from '../data/sidebarAdmin';
 import { Link } from 'react-router-dom';
-import { AdminProvider } from '../context/AdminContext';
 import { NavLink } from 'react-router-dom';
 
 interface AdminLayoutProps {

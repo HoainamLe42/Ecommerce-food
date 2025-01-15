@@ -24,46 +24,65 @@ const SignIn = () => {
     const handleOpenPopup = () => setIsPopupOpen(true);
     const handleClosePopup = () => setIsPopupOpen(false);
 
-    const [errors, setErrors] = useState<{
-        email?: string;
-        password?: string;
-    }>({});
+    const [errors, setErrors] = useState<Partial<UserFormData>>({});
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
 
+    const validate = (): boolean => {
+        const newErrors: Partial<UserFormData> = {};
+
+        if (!formData.email.trim()) {
+            newErrors.email = 'Email không được để trống.';
+        } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.email)
+        ) {
+            newErrors.email = 'Email không hợp lệ.';
+        }
+
+        if (!formData.password.trim()) {
+            newErrors.password = 'Mật khẩu không được để trống.';
+        }
+
+        setErrors(newErrors);
+
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        try {
-            const response = await fetch(`${API_BASE_URL}/users`);
-            const users = await response.json();
+        if (validate()) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/users`);
+                const users = await response.json();
 
-            const user = users.find(
-                (user: { email: string; password: string }) =>
-                    user.email === formData.email &&
-                    user.password === formData.password,
-            );
+                const user = users.find(
+                    (user: { email: string; password: string }) =>
+                        user.email === formData.email &&
+                        user.password === formData.password,
+                );
 
-            if (user) {
-                setMessage('Đăng nhập thành công.');
-                handleOpenPopup();
+                if (user) {
+                    setMessage('Đăng nhập thành công.');
+                    handleOpenPopup();
 
-                if (user.role === 'admin') {
-                    navigate(config.routes.adminDashboard);
+                    if (user.role === 'admin') {
+                        navigate(config.routes.adminDashboard);
+                    } else {
+                        login(user);
+                        alert('Đăng nhập thành công!');
+                        navigate(config.routes.home);
+                    }
                 } else {
-                    login(user);
-                    alert('Đăng nhập thành công!');
-                    navigate(config.routes.home);
+                    setMessage('Mật khẩu hoặc email không đúng.');
                 }
-            } else {
-                setMessage('Mật khẩu hoặc email không đúng.');
+            } catch {
+                console.error(errors);
+                setMessage('Lỗi khi đăng nhập. Vui lòng thử lại.');
             }
-        } catch {
-            console.error(errors);
-            setMessage('Lỗi khi đăng nhập. Vui lòng thử lại.');
         }
 
         // setFormData({ email: '', password: '' });

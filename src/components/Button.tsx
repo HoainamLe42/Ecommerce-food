@@ -1,5 +1,5 @@
 import { VariantProps, cva } from 'class-variance-authority';
-import { ComponentProps } from 'react';
+import { ButtonHTMLAttributes, ComponentProps } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export const buttonStyles = cva(['transition-colors'], {
@@ -39,16 +39,24 @@ export const buttonStyles = cva(['transition-colors'], {
         size: 'default',
     },
 });
+// interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+//     size: 'small' | 'medium' | 'large'; // Kích thước button
+//     variant: 'primary' | 'secondary' | 'tertiary'; // Kiểu dáng button
+//     className?: string; // Lớp CSS bổ sung
+//     to?: string; // Dùng cho thẻ <a>, nếu có sẽ chuyển sang link
+// }
 
 type ButtonProps = VariantProps<typeof buttonStyles> &
-    ComponentProps<'button'> & { to?: string };
+    ButtonHTMLAttributes<HTMLButtonElement> &
+    ComponentProps<'button'> &
+    ComponentProps<'a'> & { to?: string };
 const Button = ({ size, variant, className, to, ...props }: ButtonProps) => {
-    className = twMerge(buttonStyles({ size, variant }), className);
+    const buttonClassName = twMerge(buttonStyles({ size, variant }), className);
     if (to) {
-        return <a href={to} {...props} className={className}></a>;
+        return <a href={to} {...props} className={buttonClassName}></a>;
     }
 
-    return <button {...props} className={className} />;
+    return <button {...props} className={buttonClassName} />;
 };
 
 export default Button;

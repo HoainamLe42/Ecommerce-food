@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { CircleX, MenuIcon, ShoppingCart } from 'lucide-react';
 
 import Logo from '../assets/logo.png';
@@ -20,10 +20,6 @@ const Header = () => {
     const [isActiveScroll, setIsActiveScroll] = useState<boolean>(false);
     const [isOpenDropdown, setIsOpenDropDown] = useState<boolean>(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const handleClosePopup = () => {
-        setIsMenuOpen(false);
-    };
 
     const handleScroll = () => {
         setIsActiveScroll(window.scrollY > 150);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import AdminLayout from '../../layouts/AdminLayout';
 import { User } from '../../types/admin/UserTypes';
 import { API_BASE_URL } from '../../context/StoreContext';

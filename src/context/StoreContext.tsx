@@ -9,7 +9,6 @@ import {
 } from 'react';
 import { useLocalStorage } from '../hook/useLocalStorage';
 import { Product } from '../types/ProductTypes';
-import Popup from '../components/Popup';
 import config from '../config';
 
 export type CartItem = Product & {
@@ -27,7 +26,6 @@ interface ShoppingCartContextProps {
     removeFromCart: (id: number) => void;
 
     // ======
-    fetchProducts: () => void;
     // ====
     foods: Product[];
     featuredProducts: Product[];

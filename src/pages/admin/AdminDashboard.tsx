@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { OrderProps } from '../../api/orderService';
 import AdminLayout from '../../layouts/AdminLayout';
 import { formatCurrency, formatDate } from '../../utils/CurrencyFormatter';
-import OrdersChart from './components/dashboard/OrdersChart';
-import RevenueChart from './components/dashboard/RevenueChart';
 import { API_BASE_URL } from '../../context/StoreContext';
 import LoadingSpinner from '../../components/LoadingSpinner';
 

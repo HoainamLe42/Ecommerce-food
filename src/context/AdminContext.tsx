@@ -1,14 +1,11 @@
 import React, { ReactNode, createContext, useContext, useState } from 'react';
-import { ProductProps } from '../data/dataProducts';
 import { API_BASE_URL } from './StoreContext';
+import { Product } from '../types/ProductTypes';
 
 interface AdminContextProps {
-    products: ProductProps[];
+    products: Product[];
     fetchProducts: () => void;
     handleDeleteProduct: (id: number) => void;
-    handleAddProduct: () => void;
-    newProduct: ProductProps;
-    setNewProduct: React.Dispatch<React.SetStateAction<ProductProps>>;
 }
 
 const AdminContext = createContext<AdminContextProps | undefined>(undefined);
@@ -16,12 +13,7 @@ const AdminContext = createContext<AdminContextProps | undefined>(undefined);
 export const AdminProvider: React.FC<{ children: ReactNode }> = ({
     children,
 }) => {
-    const [products, setProducts] = useState<ProductProps[]>([]);
-    const [newProduct, setNewProduct] = useState<ProductProps>({
-        name: '',
-        price: 0,
-        image: '',
-    });
+    const [products, setProducts] = useState<Product[]>([]);
 
     // Get data from API
     const fetchProducts = async () => {
@@ -40,25 +32,6 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({
             .catch((error) => console.error('Error deleting product:', error));
     };
 
-    // Add product
-    const handleAddProduct = () => {
-        fetch(`${API_BASE_URL}/products`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newProduct),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setProducts((prev) => [...prev, data]);
-                setNewProduct({ id: 0, name: '', price: 0, image: '' });
-            })
-            .catch((error) =>
-                console.error('Có lỗi khi thêm sản phẩm:', error),
-            );
-    };
-
     console.log(products);
 
     return (
@@ -67,9 +40,6 @@ export const AdminProvider: React.FC<{ children: ReactNode }> = ({
                 products,
                 fetchProducts,
                 handleDeleteProduct,
-                handleAddProduct,
-                newProduct,
-                setNewProduct,
             }}
         >
             {children}

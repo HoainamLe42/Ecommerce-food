@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Container from '../components/Container';
 import Button from '../components/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ChevronLeft, CircleUser } from 'lucide-react';
 import { useShoppingCart } from '../context/StoreContext';
 import { formatCurrency } from '../utils/CurrencyFormatter';
@@ -80,20 +80,6 @@ const Checkout = () => {
             return;
         }
         const orderData = {
-            // customerInfo: {
-            //     name: formData.name,
-            //     address: formData.address,
-            //     email: formData.email,
-            //     phone: formData.phone,
-            //     message: formData.message,
-            //     paymentMethods: formData.paymentMethod,
-            // },
-            // items: cartItems.map((item) => ({
-            //     id: item.id,
-            //     name: item.name,
-            //     quantity: getItemQuantity(Number(item.id)),
-            //     price: item.price,
-            // })),
             id: Date.now(),
             userId: localStorage.getItem('userId') || 'gust',
             items: cartItems,

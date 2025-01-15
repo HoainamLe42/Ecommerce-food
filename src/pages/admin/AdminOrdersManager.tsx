@@ -6,7 +6,6 @@ import { formatCurrency, formatDate } from '../../utils/CurrencyFormatter';
 import { Order } from '../../types/admin/OrderTypes';
 import { API_BASE_URL } from '../../context/StoreContext';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { Divide } from 'lucide-react';
 
 const AdminOrdersManager = () => {
     const [orders, setOrders] = useState<Order[]>([]);

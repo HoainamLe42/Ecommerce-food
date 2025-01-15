@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAdminContext } from '../../../../context/AdminContext';
 import { formatCurrency } from '../../../../utils/CurrencyFormatter';
 import Button from '../../../../components/Button';

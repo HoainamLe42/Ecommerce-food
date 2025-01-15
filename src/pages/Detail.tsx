@@ -50,9 +50,15 @@ const Detail = () => {
             rating: 4,
         },
     ];
-    const [activeTab, setActiveTab] = useState<
-        'description' | 'info' | 'reviews'
-    >('description');
+    const [activeTab, setActiveTab] = useState<string>('description');
+
+    const handleTabChange = (tab: string) => {
+        if (tab === 'description' || tab === 'info' || tab === 'reviews') {
+            setActiveTab(tab);
+        } else {
+            console.error('Invalid tab value:', tab);
+        }
+    };
 
     return (
         <div className="bg-white">
@@ -203,7 +209,7 @@ const Detail = () => {
                         <ul className="text-sm h-[50px] text-secondary-text flex sm:justify-start justify-around border-[1px] border-gray-300">
                             {tabs.map((tab, index) => (
                                 <li
-                                    onClick={() => setActiveTab(tab.key)}
+                                    onClick={() => handleTabChange(tab.key)}
                                     key={index}
                                     className={`py-2 flex items-center px-4 cursor-pointer ${
                                         activeTab === tab.key

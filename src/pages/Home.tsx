@@ -6,7 +6,6 @@ import FeaturedProductsSlider from '../components/FeaturedProductsSlider';
 import { useShoppingCart } from '../context/StoreContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Banner from '../components/Home/Banner';
-import { useEffect, useState } from 'react';
 
 const Home = () => {
     const { loading } = useShoppingCart();

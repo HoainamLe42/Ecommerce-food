@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Box, CircleDollarSign, Divide, Truck } from 'lucide-react';
+import { Box, CircleDollarSign, Truck } from 'lucide-react';
 
 import Container from '../components/Container';
 import Button from '../components/Button';
@@ -9,12 +9,6 @@ import { formatCurrency } from '../utils/CurrencyFormatter';
 import { useAuth } from '../context/AuthContext';
 import config from '../config';
 import Popup from '../components/Popup';
-
-const tabs = [
-    { key: 'description', label: 'Mô tả' },
-    { key: 'info', label: 'Thông tin' },
-    { key: 'reviews', label: 'Đánh giá' },
-];
 
 const Detail = () => {
     const {
@@ -27,7 +21,7 @@ const Detail = () => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const { user } = useAuth();
     const navigate = useNavigate();
-    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(true);
+    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
 
     const handleOpenPopup = () => setIsPopupOpen(true);
     const handleClosePopup = () => setIsPopupOpen(false);
@@ -38,6 +32,11 @@ const Detail = () => {
     // Lấy chi tiết sản phẩm từ id
     const food = foods?.find((food) => Number(food.id) === Number(id));
 
+    const tabs = [
+        { key: 'description', label: 'Mô tả' },
+        { key: 'info', label: 'Thông tin' },
+        { key: 'reviews', label: 'Đánh giá' },
+    ];
     // Data fake
     const description =
         'Đây là mô tả chi tiết của sản phẩm. Sản phẩm được làm từ chất liệu cao cấp.';

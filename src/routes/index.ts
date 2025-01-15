@@ -1,21 +1,10 @@
 import React from 'react';
 import config from '../config';
 import AdminLayout from '../layouts/AdminLayout';
-import Blog from '../pages/Blog';
-import Cart from '../pages/Cart';
-import Checkout from '../pages/Checkout';
 import Contact from '../pages/Contact';
-import Detail from '../pages/Detail';
-import Home from '../pages/Home';
-import Shopping from '../pages/Shopping';
 import UserProfile from '../pages/User/UserProfile';
-// import AdminDashboard from '../pages/admin/AdminDashboard';
-// import AdminOrderDetail from '../pages/admin/AdminOrderDetail';
-// import AdminOrdersManager from '../pages/admin/AdminOrdersManager';
-// import AdminProducts from '../pages/admin/AdminProductsManager';
-// import AdminUsers from '../pages/admin/AdminUsers';
-import SignIn from '../pages/auth/SignIn';
 import SignUp from '../pages/auth/SignUp';
+import SignIn from '../pages/auth/SignIn';
 
 const HomePage = React.lazy(() => import('../pages/Home'));
 const ShoppingPage = React.lazy(() => import('../pages/Shopping'));

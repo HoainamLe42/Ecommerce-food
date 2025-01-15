@@ -1,30 +1,9 @@
-import { useState } from 'react';
-
 import { useShoppingCart } from '../context/StoreContext';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Button from './Button';
 import { productCategories } from '../data/dataProducts';
 
 const ProductFilter = () => {
     const { selectedType, setSelectedType, selectedValue, setSelectedValue } =
         useShoppingCart();
-    const [startIndex, setStartIndex] = useState(0);
-    const visibleItems = 3;
-
-    const handleNextBtn = () => {
-        if (startIndex + visibleItems < productCategories.length) {
-            setStartIndex(startIndex + 1);
-        }
-    };
-    const handlePrevBtn = () => {
-        if (startIndex > 0) {
-            setStartIndex(startIndex - 1);
-        }
-    };
-    const visibleProducts = productCategories.slice(
-        startIndex,
-        startIndex + visibleItems,
-    );
 
     return (
         <div className="relative overflow-hidden flex justify-between">
@@ -88,21 +67,7 @@ const ProductFilter = () => {
                     ))}
                 </ul>
             </div>
-            {/* Button Next & Prev */}
-            {/* <Button
-                onClick={handlePrevBtn}
-                className="md:hidden absolute left-[2%] top-1/2 transform -translate-y-1/2 p-[2px] disabled:opacity-80"
-                disabled={startIndex === 0}
-            >
-                <ChevronLeft size={16} />
-            </Button>
-            <Button
-                onClick={handleNextBtn}
-                className="md:hidden absolute right-[2%] top-1/2 transform -translate-y-1/2 p-[2px] disabled:opacity-80"
-                disabled={startIndex + visibleItems >= productCategories.length}
-            >
-                <ChevronRight size={16} />
-            </Button> */}
+
             <div className="lg:flex hidden items-end gap-5 pb-3 pr-3">
                 <p className="font-semibold">Lọc:</p>{' '}
                 <div className="p-1 border-[1px] border-gray-500 rounded-lg">

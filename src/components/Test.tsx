@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from 'react';
+import { CSSProperties, useState } from 'react';
 
 interface CustomCSSProperties extends CSSProperties {
     '--i'?: string;
@@ -7,7 +7,6 @@ interface CustomCSSProperties extends CSSProperties {
 
 const Test = () => {
     const [container, setContainer] = useState<boolean>(false);
-    const [h2, setH2] = useState<boolean>(false);
 
     return (
         <div className="test-2025">

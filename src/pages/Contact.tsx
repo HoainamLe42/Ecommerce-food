@@ -153,7 +153,6 @@ const Contact = () => {
                                 <div key={index} className="flex gap-2">
                                     <span className="h-10 w-10 rounded-full bg-primary flex flex-shrink items-center justify-center">
                                         <contact.icon
-                                            size="18"
                                             color="white"
                                             className=""
                                         />

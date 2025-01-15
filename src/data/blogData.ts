@@ -50,6 +50,5 @@ export const blogFilters: BlogFilterTypes[] = [
     { id: 'all', label: 'Tất cả' },
     { id: 'popular', label: 'Phổ biến' },
     { id: 'recent', label: 'Gần đây' },
-    // { id: 'oldest', label: 'Cũ nhất' },
-    { id: 'old', label: 'Cũ nhất' },
+    { id: 'oldest', label: 'Cũ nhất' },
 ];

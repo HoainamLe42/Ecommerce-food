@@ -1,24 +1,16 @@
 import { useEffect, useState } from 'react';
 import AOS from 'aos';
-import {
-    Loader,
-    LoaderCircle,
-    LoaderPinwheel,
-    ShoppingCart,
-    Star,
-} from 'lucide-react';
+import { LoaderCircle, ShoppingCart, Star } from 'lucide-react';
 
 import { formatCurrency } from '../utils/CurrencyFormatter';
 import Button from './Button';
 import { Product } from '../types/ProductTypes';
 import { useShoppingCart } from '../context/StoreContext';
-import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 
 const FoodItem = ({ id, name, image, price, type }: Product) => {
     const { foods, increaseCartQuantity } = useShoppingCart();
     const [isImageLoaded, setIsImageLoaded] = useState(false);
-    const { user } = useAuth();
 
     // Lấy chi tiết sản phẩm từ id
     const food = foods?.find((food) => Number(food.id) === Number(id));

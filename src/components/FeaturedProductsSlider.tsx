@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, LoaderCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useShoppingCart } from '../context/StoreContext';
 import { formatCurrency } from '../utils/CurrencyFormatter';
 import Button from './Button';

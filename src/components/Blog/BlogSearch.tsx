@@ -1,4 +1,4 @@
-import { Search, X } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useBlog } from '../../context/BlogContext';
 
 const BlogSearch = () => {

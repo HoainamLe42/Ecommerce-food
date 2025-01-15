@@ -210,7 +210,7 @@ const Header = () => {
                             ) : (
                                 <div className="text-sm gap-3 md:flex hidden items-center">
                                     <Button
-                                        to={config.routes.signIn}
+                                        to="/sign-in"
                                         variant="ghost"
                                         className="text-nowrap"
                                     >

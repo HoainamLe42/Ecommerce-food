@@ -22,21 +22,21 @@ const Home = () => {
                             {/* Hero */}
                             <div className="grid md:grid-cols-2 grid-cols-1 gap-5 items-center justify-center">
                                 {/* Content */}
-                                <section className="md:pr-10 flex flex-col gap-4">
-                                    <p className="text-lg text-primary tracking-wide leading-5">
+                                <section className="md:pr-10 flex flex-col gap-4 transform">
+                                    <p className="text-lg text-primary tracking-wide leading-5 slide-in-top">
                                         #The Best in Town
                                     </p>
-                                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold uppercase">
+                                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold uppercase slide-in-left">
                                         Đặt food ngay, giao ngay tới nhà
                                     </h1>
 
-                                    <p className="text-secondary-text">
+                                    <p className="text-secondary-text slide-in-right">
                                         Bạn muốn nó. Chúng tôi hiểu rồi. Thực
                                         phẩm, đồ uống, hàng tạp hóa và nhiều thứ
                                         khác có sẵn để giao hàng và nhận hàng.
                                     </p>
 
-                                    <div className="sm:max-w-[300px] w-full">
+                                    <div className="sm:max-w-[300px] w-full slide-in-top">
                                         <Button
                                             to={config.routes.shopping}
                                             className="uppercase w-full font-semibold py-4 flex justify-center"
@@ -44,7 +44,7 @@ const Home = () => {
                                             Đặt hàng ngay
                                         </Button>
                                     </div>
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex items-center gap-3 slide-in-top">
                                         <p className="text-xl font-bold">
                                             Tải ứng dụng:
                                         </p>
@@ -63,7 +63,7 @@ const Home = () => {
                                 </section>
 
                                 {/* Media */}
-                                <div className="relative">
+                                <div className="relative fade-in">
                                     <img
                                         src="./images/home/img1.webp"
                                         alt=""

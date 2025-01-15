@@ -201,7 +201,7 @@ export const productCategories: Category[] = [
     },
     {
         id: 7,
-        name: 'Món ăn nhanh',
+        name: 'Fastfood',
         type: 'Fast Food',
         image: './images/category-product/american-food_img.png',
     },

@@ -34,7 +34,7 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
     const [blogPosts, setBlogPosts] = useState<BlogTypes[]>([]);
     const [filteredBlogPosts, setFilteredBlogPosts] = useState<BlogTypes[]>([]);
     const [searchQuery, setSearchQuery] = useState<string>('');
-    const [selectedType, setSelectedType] = useState('all');
+    const [selectedType, setSelectedType] = useState<string>('');
     const [loading, setLoading] = useState<boolean>(true);
 
     const fetchBlogPosts = async () => {
@@ -60,13 +60,15 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
     }, []);
 
     const filteredBlogs = blogPosts.filter((blog) => {
-        const selectQuery = blog.title
-            .toLocaleLowerCase()
-            .includes(searchQuery?.toLocaleLowerCase());
+        const matchesType =
+            selectedType && selectedType !== 'all'
+                ? blog.type === selectedType
+                : true;
+        const matchesQuery = searchQuery
+            ? blog.title?.toLowerCase().includes(searchQuery?.toLowerCase())
+            : true;
 
-        const selectType = selectedType === 'all' || blog.name === selectedType;
-
-        return selectQuery || selectType;
+        return matchesType && matchesQuery;
     });
 
     useEffect(() => {

@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import BlogCard from '../components/Blog/BlogCard';
 import BlogFilter from '../components/Blog/BlogFilter';
 import BlogSideshow from '../components/Blog/BlogSideshow';

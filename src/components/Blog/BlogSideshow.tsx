@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import AOS from 'aos';
 
 import Container from '../Container';
 import Button from '../Button';
@@ -19,6 +20,12 @@ const BlogSideshow = () => {
         );
     };
 
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+
+        return () => AOS.refresh();
+    }, []);
     return (
         <Container>
             <div className="w-full overflow-hidden md:mt-[40px]">
@@ -31,18 +38,30 @@ const BlogSideshow = () => {
                             <div className="flex flex-col gap-y-7 md:grid grid-cols-12">
                                 {/* Content */}
                                 <div className="col-span-6 flex flex-col">
-                                    <p className="text-sm md:text-lg text-secondary-text flex items-center">
+                                    <p
+                                        data-aos="fade-down-right"
+                                        className="text-sm md:text-lg text-secondary-text flex items-center"
+                                    >
                                         <span>{blog.time}</span>
                                         <hr className="mx-3 w-[1px] h-[14px] bg-secondary-text" />
                                         <span>{blog.readMin}</span>
                                     </p>
-                                    <h1 className="pr-2 text-[34px] md:text-[44px] mt-4 font-semibold leading-none">
+                                    <h1
+                                        data-aos="fade-left"
+                                        className="pr-2 text-[34px] md:text-[44px] mt-4 font-semibold leading-none"
+                                    >
                                         {blog.title}
                                     </h1>
-                                    <p className="mt-5 md:text-lg text-secondary-text font-light">
+                                    <p
+                                        data-aos="fade-up-left"
+                                        className="mt-5 md:text-lg text-secondary-text font-light"
+                                    >
                                         {blog.desc}
                                     </p>
-                                    <div className="flex items-center gap-3 mt-3 md:mt-9">
+                                    <div
+                                        data-aos="zoom-in-up"
+                                        className="flex items-center gap-3 mt-3 md:mt-9"
+                                    >
                                         <img
                                             src={blog.author_avatar}
                                             alt=""
@@ -57,6 +76,7 @@ const BlogSideshow = () => {
                                 {/* Media */}
                                 <section className="md:col-span-5 md:col-start-8 mx-auto">
                                     <img
+                                        data-aos="zoom-in"
                                         src={blog.img}
                                         alt=""
                                         className="h-auto w-[339px] md:w-[470px] object-cover rounded-xl"

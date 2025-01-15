@@ -6,12 +6,26 @@ import Container from '../components/Container';
 import FoodItem from '../components/FoodItem';
 import ProductFilter from '../components/ProductFilter';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { Product } from '../types/ProductTypes';
 
 const Shopping = () => {
     const { filteredFoods, selectedType, setSelectedType, loading } =
         useShoppingCart();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 12;
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+    const [currentData, setCurrentData] = useState<Product[]>([]);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 640);
+        };
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     // // Tổng trang
     const totalPages = Math.ceil(filteredFoods.length / itemsPerPage);
@@ -35,6 +49,14 @@ const Shopping = () => {
             behavior: 'smooth',
         });
     };
+
+    useEffect(() => {
+        if (isMobile) {
+            setCurrentData(filteredFoods);
+        } else {
+            setCurrentData(currentItems);
+        }
+    }, [isMobile, filteredFoods]);
 
     return (
         <div className="bg-white">
@@ -65,14 +87,24 @@ const Shopping = () => {
                             </div>
 
                             {/* List item */}
-                            <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5">
-                                {currentItems.map((item) => (
+                            <div
+                                className={`grid ${
+                                    isMobile
+                                        ? 'sm:grid-cols-2 grid-cols-1'
+                                        : 'lg:grid-cols-4 md:grid-cols-3'
+                                } gap-5`}
+                            >
+                                {currentData.map((item) => (
                                     <FoodItem {...item} key={item.id} />
                                 ))}
                             </div>
 
                             {filteredFoods.length > itemsPerPage && (
-                                <div className="mt-7 flex gap-4">
+                                <div
+                                    className={`mt-7 flex ${
+                                        isMobile ? 'hidden' : 'flex'
+                                    } gap-4`}
+                                >
                                     {Array.from(
                                         { length: totalPages },
                                         (_, index) => (

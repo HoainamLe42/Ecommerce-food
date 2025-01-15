@@ -5,7 +5,6 @@ import Button from './Button';
 import Container from './Container';
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import Slider from 'react-slick';
 
 const FeaturedProductsSlider = () => {
     const { featuredProducts } = useShoppingCart();
@@ -80,7 +79,7 @@ const FeaturedProductsSlider = () => {
                         className="flex overflow-hidden scroll-smooth w-full"
                     >
                         <div
-                            className="flex w-full transition-all duration-500"
+                            className="flex w-full transition-all duration-500 md:overflow-y-visible overflow-y-auto"
                             // style={{
                             //     transform: `translateX(-${
                             //         currentIndex * (100 / visibleItems)
@@ -88,8 +87,8 @@ const FeaturedProductsSlider = () => {
                             // }}
                         >
                             {featuredProducts.map((food) => (
-                                <div
-                                    // to={`/detail/${food.id}`}
+                                <Link
+                                    to={`/detail/${food.id}`}
                                     key={food.id}
                                     className={`flex-none lg:w-1/4 md:w-1/3 w-full p-2`}
                                 >
@@ -118,13 +117,13 @@ const FeaturedProductsSlider = () => {
                                             </p>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             ))}
                         </div>
                     </div>
                     <Button
                         onClick={handlePrev}
-                        className="absolute top-1/2 left-0 transform -translate-y-1/2 disabled:opacity-80 md:p-2 p-1"
+                        className="md:block hidden absolute top-1/2 left-0 transform -translate-y-1/2 disabled:opacity-80 md:p-2 p-1"
                         disabled={currentIndex === 0}
                     >
                         <ChevronLeft />
@@ -132,25 +131,11 @@ const FeaturedProductsSlider = () => {
 
                     <Button
                         onClick={handleNext}
-                        className="absolute top-1/2 right-0 transform -translate-y-1/2 disabled:opacity-80 md:p-2 p-1"
+                        className="md:block hidden absolute top-1/2 right-0 transform -translate-y-1/2 disabled:opacity-80 md:p-2 p-1"
                         disabled={currentIndex === totalSlides - 1}
                     >
                         <ChevronRight />
                     </Button>
-
-                    {/* <div className="md:flex hidden justify-center gap-3 mt-3">
-                        {Array.from({ length: totalSlides }).map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => setCurrentIndex(index)}
-                                className={`w-3 h-3 rounded-full white border ${
-                                    currentIndex === index
-                                        ? 'bg-primary border-primary'
-                                        : 'bg-white border-secondary-border'
-                                }`}
-                            ></button>
-                        ))}
-                    </div> */}
                 </div>
             </Container>
         </section>

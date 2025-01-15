@@ -13,7 +13,7 @@ const BlogFilter = () => {
                         <li
                             key={filter.id}
                             onClick={() => setSelectedType(filter.id)}
-                            onChange={(e) => {
+                            onChange={() => {
                                 setSelectedType(filter.id);
                                 setSearchQuery('');
                             }}

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import AOS from 'aos';
 import {
     Loader,
     LoaderCircle,
@@ -22,8 +23,17 @@ const FoodItem = ({ id, name, image, price, type }: Product) => {
     // Lấy chi tiết sản phẩm từ id
     const food = foods?.find((food) => Number(food.id) === Number(id));
 
+    useEffect(() => {
+        AOS.init();
+        AOS.refresh();
+
+        return () => AOS.refresh();
+    }, []);
     return (
-        <div className="p-3 shadow-lg rounded-lg cursor-pointer transition-all duration-150 hover:scale-105 group relative">
+        <div
+            data-aos="zoom-in"
+            className="p-3 shadow-lg rounded-lg cursor-pointer transition-all duration-150 hover:scale-105 group relative"
+        >
             <div className="relative w-full h-56 rounded-md overflow-hidden">
                 {!isImageLoaded && (
                     <div className="flex justify-center items-center h-full border overflow-hidden rounded-md">

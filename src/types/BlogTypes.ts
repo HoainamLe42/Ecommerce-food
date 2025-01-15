@@ -7,6 +7,7 @@ export type BlogTypes = {
     name: string;
     img: string;
     author_avatar: string;
+    type: string;
 };
 
 export type BlogFilterTypes = {

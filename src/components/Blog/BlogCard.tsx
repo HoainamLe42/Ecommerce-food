@@ -1,4 +1,7 @@
+import AOS from 'aos';
+
 import { BlogTypes } from '../../types/BlogTypes';
+import { useEffect } from 'react';
 
 const BlogCard = ({
     id,
@@ -10,9 +13,23 @@ const BlogCard = ({
     time,
     readMin,
 }: BlogTypes) => {
+    useEffect(() => {
+        AOS.init({
+            duration: 1000, // Thời gian animation
+            once: true, // Chỉ chạy hiệu ứng một lần
+        });
+        AOS.refresh();
+
+        return () => AOS.refresh();
+    }, []);
     return (
         <div
             key={id}
+            data-aos="zoom-in"
+            onMouseEnter={(e) => e.currentTarget.classList.add('scale-animate')}
+            onMouseLeave={(e) =>
+                e.currentTarget.classList.remove('scale-animate')
+            }
             className="p-5 h-full cursor-pointer transition-all duration-300 rounded-xl shadow-md hover:scale-105"
         >
             <img

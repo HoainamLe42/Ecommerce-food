@@ -27,7 +27,7 @@ const Detail = () => {
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const { user } = useAuth();
     const navigate = useNavigate();
-    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
+    const [isPopupOpen, setIsPopupOpen] = useState<boolean>(true);
 
     const handleOpenPopup = () => setIsPopupOpen(true);
     const handleClosePopup = () => setIsPopupOpen(false);
@@ -246,7 +246,7 @@ const Detail = () => {
                 </Container>
             </div>
             <Popup isOpen={isPopupOpen} onClose={handleClosePopup}>
-                <p className="p-3">Chưa đăng nhập ai cho bạn mua. !!</p>
+                <p className="p-8">Chưa đăng nhập ai cho bạn mua. !!</p>
             </Popup>
             ;
         </div>

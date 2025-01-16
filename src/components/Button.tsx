@@ -1,5 +1,6 @@
 import { VariantProps, cva } from 'class-variance-authority';
 import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
+import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
 export const buttonStyles = cva(['transition-colors'], {
@@ -54,25 +55,23 @@ export const buttonStyles = cva(['transition-colors'], {
 // };
 
 type ButtonProps = VariantProps<typeof buttonStyles> & {
-    to?: string; // URL nếu là thẻ <a>
-} & (
-        | ButtonHTMLAttributes<HTMLButtonElement>
-        | AnchorHTMLAttributes<HTMLAnchorElement>
-    );
+    to?: string; // URL nếu là thẻ <Link>
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({ size, variant, className, to, ...props }: ButtonProps) => {
     const buttonClassName = twMerge(buttonStyles({ size, variant }), className);
 
     if (to) {
-        // Nếu có `to`, render thẻ `<a>`
-        const { ...anchorProps } =
-            props as AnchorHTMLAttributes<HTMLAnchorElement>;
-        return <a href={to} {...anchorProps} className={buttonClassName}></a>;
+        return (
+            <Link
+                to={to}
+                {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}
+                className={buttonClassName}
+            ></Link>
+        );
     }
 
-    // Ngược lại, render thẻ `<button>`
-    const { ...buttonProps } = props as ButtonHTMLAttributes<HTMLButtonElement>;
-    return <button {...buttonProps} className={buttonClassName} />;
+    return <button {...props} className={buttonClassName} />;
 };
 
 export default Button;

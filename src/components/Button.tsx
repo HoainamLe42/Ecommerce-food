@@ -1,5 +1,5 @@
 import { VariantProps, cva } from 'class-variance-authority';
-import { ComponentProps } from 'react';
+import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export const buttonStyles = cva(['transition-colors'], {
@@ -39,24 +39,40 @@ export const buttonStyles = cva(['transition-colors'], {
         size: 'default',
     },
 });
-// interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-//     size: 'small' | 'medium' | 'large'; // Kích thước button
-//     variant: 'primary' | 'secondary' | 'tertiary'; // Kiểu dáng button
-//     className?: string; // Lớp CSS bổ sung
-//     to?: string; // Dùng cho thẻ <a>, nếu có sẽ chuyển sang link
-// }
 
-type ButtonProps = VariantProps<typeof buttonStyles> &
-    // ButtonHTMLAttributes<HTMLButtonElement> &
-    ComponentProps<'button'> &
-    ComponentProps<'a'> & { to?: string };
+// type ButtonProps = VariantProps<typeof buttonStyles> &
+//     ButtonHTMLAttributes<HTMLButtonElement> &
+//     ComponentProps<'button'> &
+//     ComponentProps<'a'> & { to?: string };
+// const Button = ({ size, variant, className, to, ...props }: ButtonProps) => {
+//     const buttonClassName = twMerge(buttonStyles({ size, variant }), className);
+//     if (to) {
+//         return <a href={to} {...props} className={buttonClassName}></a>;
+//     }
+
+//     return <button {...props} className={buttonClassName} />;
+// };
+
+type ButtonProps = VariantProps<typeof buttonStyles> & {
+    to?: string; // URL nếu là thẻ <a>
+} & (
+        | ButtonHTMLAttributes<HTMLButtonElement>
+        | AnchorHTMLAttributes<HTMLAnchorElement>
+    );
+
 const Button = ({ size, variant, className, to, ...props }: ButtonProps) => {
     const buttonClassName = twMerge(buttonStyles({ size, variant }), className);
+
     if (to) {
-        return <a href={to} {...props} className={buttonClassName}></a>;
+        // Nếu có `to`, render thẻ `<a>`
+        const { ...anchorProps } =
+            props as AnchorHTMLAttributes<HTMLAnchorElement>;
+        return <a href={to} {...anchorProps} className={buttonClassName}></a>;
     }
 
-    return <button {...props} className={buttonClassName} />;
+    // Ngược lại, render thẻ `<button>`
+    const { ...buttonProps } = props as ButtonHTMLAttributes<HTMLButtonElement>;
+    return <button {...buttonProps} className={buttonClassName} />;
 };
 
 export default Button;

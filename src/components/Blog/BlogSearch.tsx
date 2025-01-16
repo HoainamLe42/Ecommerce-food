@@ -1,4 +1,4 @@
-import { Search } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import { useBlog } from '../../context/BlogContext';
 
 const BlogSearch = () => {
@@ -15,14 +15,14 @@ const BlogSearch = () => {
                     placeholder="Search..."
                     className="h-full px-3 outline-none border-none"
                 />
-                {/* {searchQuery && (
+                {searchQuery && (
                     <X
                         onClick={() => setSearchQuery('')}
                         color="gray"
                         size="20"
                         className="absolute right-0 mr-4 cursor-pointer"
                     />
-                )} */}
+                )}
             </div>
         </div>
     );

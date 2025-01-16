@@ -6,6 +6,7 @@ import FeaturedProductsSlider from '../components/FeaturedProductsSlider';
 import { useShoppingCart } from '../context/StoreContext';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Banner from '../components/Home/Banner';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const { loading } = useShoppingCart();
@@ -36,12 +37,12 @@ const Home = () => {
                                     </p>
 
                                     <div className="sm:max-w-[300px] w-full slide-in-top">
-                                        <Button
+                                        <Link
                                             to={config.routes.shopping}
                                             className="uppercase w-full font-semibold py-4 flex justify-center"
                                         >
                                             Đặt hàng ngay
-                                        </Button>
+                                        </Link>
                                     </div>
                                     <div className="flex items-center gap-3 slide-in-top">
                                         <p className="text-xl font-bold">

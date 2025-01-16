@@ -1,10 +1,5 @@
 import { VariantProps, cva } from 'class-variance-authority';
-import {
-    AnchorHTMLAttributes,
-    ButtonHTMLAttributes,
-    ComponentProps,
-} from 'react';
-import { Link } from 'react-router-dom';
+import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 export const buttonStyles = cva(['transition-colors'], {

@@ -1,5 +1,5 @@
 import config from '../config';
-import Button from '../components/Button';
+// import Button from '../components/Button';
 import Container from '../components/Container';
 import NewsletterForm from '../components/NewsletterForm';
 import FeaturedProductsSlider from '../components/FeaturedProductsSlider';

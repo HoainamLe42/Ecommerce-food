@@ -31,7 +31,7 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
         >
             {isOpen && (
                 <div
-                    onClick={() => onClose(false)}
+                    // onClick={() => onClose(false)}
                     className="fixed inset-0 z-10 bg-black bg-opacity-50"
                 ></div>
             )}

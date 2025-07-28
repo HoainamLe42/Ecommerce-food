@@ -22,7 +22,7 @@ const Blog = () => {
                                 ? filteredBlogPosts
                                 : blogPosts
                             ).map((blog) => (
-                                <BlogCard {...blog} key={blog.id} />
+                                <BlogCard key={blog.id} {...blog} />
                             ))}
                         </div>
                     </Container>

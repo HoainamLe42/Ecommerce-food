@@ -8,11 +8,9 @@ const ScrollToTop: React.FC = () => {
         window.scrollTo({
             top: 0,
             left: 0,
-            behavior: 'smooth', // Cuộn mượt mà
+            behavior: 'smooth',
         });
     }, [pathname]);
-
-    // console.log(pathname);
     return null;
 };
 

@@ -26,8 +26,6 @@ const Cart = () => {
         getItemCartAmount,
     } = useShoppingCart();
 
-    // Tổng tiền của 1 sản phẩm với số lượng
-
     return (
         <div>
             <div className="bg-white">

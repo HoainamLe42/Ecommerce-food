@@ -10,6 +10,7 @@ import {
 import { useLocalStorage } from '../hook/useLocalStorage';
 import { Product } from '../types/ProductTypes';
 import config from '../config';
+import { useAuth } from './AuthContext';
 
 export type CartItem = Product & {
     quantity: number;
@@ -64,9 +65,13 @@ export const ShoppingCartProvider = ({
         'shopping-cart',
         [],
     );
+
     const [selectedType, setSelectedType] = useState<string>('All');
     const [filteredFoods, setFilteredFoods] = useState<Product[]>(foods);
     const [selectedValue, setSelectedValue] = useState<string>('all');
+    const { user } = useAuth();
+
+    console.log(localStorage.getItem('shopping-cart'));
 
     // Get data
     useEffect(() => {
@@ -115,6 +120,15 @@ export const ShoppingCartProvider = ({
     // console.log('ID: ', userId);
     // console.log('cartItems: ', cartItems);
 
+    useEffect(() => {
+        if (!user) {
+            localStorage.setItem(
+                'cart',
+                JSON.stringify({ userId: null, items: cartItems }),
+            );
+        }
+    }, [user, cartItems]);
+
     const filterFoods = () => {
         // Tránh thay đổi lại biến khi sắp xếp
         let updatedFoods = foods;
@@ -138,6 +152,9 @@ export const ShoppingCartProvider = ({
     useEffect(() => {
         filterFoods();
     }, [selectedType, foods, selectedValue]);
+
+    console.log('UserID: ', user?.id);
+    console.log('Cart :', cartItems);
 
     // 2. Thêm sản phẩm or tăng số lượng
     const increaseCartQuantity = (productId: number) => {

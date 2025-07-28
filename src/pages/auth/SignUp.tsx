@@ -255,7 +255,7 @@ const SignUp: React.FC<NewUser> = () => {
             </div>
 
             <Popup isOpen={isPopupOpen} onClose={handleClosePopup}>
-                Bạn đã đăng ký thành công.
+                <p className="p-8">Bạn đã đăng ký thành công.</p>
             </Popup>
         </div>
     );

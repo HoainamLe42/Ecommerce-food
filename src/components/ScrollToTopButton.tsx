@@ -2,7 +2,7 @@ import { ArrowUp } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 
 const ScrollToTopButton: React.FC = () => {
-    const [isVisible, setIsVisible] = useState(false);
+    const [isVisible, setIsVisible] = useState<boolean>(false);
 
     const handleScroll = () => {
         setIsVisible(window.scrollY > 300);

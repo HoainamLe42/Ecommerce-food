@@ -57,7 +57,9 @@ const SignIn = () => {
         if (validate()) {
             try {
                 const response = await fetch(`${API_BASE_URL}/users`);
+
                 const users = await response.json();
+                console.log(users);
 
                 const user = users.find(
                     (user: { email: string; password: string }) =>
@@ -85,7 +87,6 @@ const SignIn = () => {
             }
         }
 
-        // setFormData({ email: '', password: '' });
         // alert(JSON.stringify(formData, null, 2));
     };
 
@@ -135,7 +136,7 @@ const SignIn = () => {
                                         onClick={() =>
                                             setIsPassword(!isPassword)
                                         }
-                                        className="absolute right-2  top-1/2 -translate-x-1/2 -translate-y-1/2 pb-3"
+                                        className="absolute right-2 top-1/2 -translate-x-1/2 -translate-y-1/2 pb-3"
                                     >
                                         {isPassword ? (
                                             <EyeOff color="gray" size="18" />
@@ -191,7 +192,7 @@ const SignIn = () => {
             </div>
 
             <Popup isOpen={isPopupOpen} onClose={handleClosePopup}>
-                Đăng nhập thành công.
+                <p className="p-8">Đăng nhập thành công.</p>
             </Popup>
         </div>
     );

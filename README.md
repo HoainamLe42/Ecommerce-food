@@ -1,50 +1,75 @@
-# React + TypeScript + Vite
+# 🍕 Food Ecommerce - Fast Food Ordering Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Một website đặt món ăn trực tuyến, cho phép người dùng duyệt thực đơn, lựa chọn món ăn (pizza, burger, nước uống,...), thêm vào giỏ hàng và đặt món nhanh chóng, tiện lợi.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📸 Demo
 
-## Expanding the ESLint configuration
+> [🌐 Xem demo tại đây](https://ecommerce-food-plum.vercel.app/) > ![Screenshot](./assets/food-order-preview.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## 🚀 Tính năng chính
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+-   🧾 Xem danh sách món ăn (pizza, hamburger, nước uống,...)
+-   🔍 Tìm kiếm & lọc món ăn theo danh mục
+-   🛒 Thêm/xoá món vào giỏ hàng, cập nhật số lượng
+-   🧑 Đăng ký / Đăng nhập người dùng
+-   🛍️ Đặt hàng (Order) và lưu đơn hàng theo user
+-   📄 Xem lịch sử đơn hàng đã đặt
+-   🔒 Xác thực người dùng
+-   ⚙️ Giao diện quản trị Admin: quản lý món ăn, đơn hàng,user,...
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## 🛠️ Công nghệ sử dụng
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+-   **Frontend:**
+    -   React + TypeScript
+    -   TailwindCSS
+    -   React Router
+    -   Context API
+-   **Backend (giả lập):**
+-   JSON Server được deploy trên **Codesandbox** để giữ backend luôn online
+-   API luôn sẵn sàng truy cập qua URL như:  
+     `https://qx6g8d-8080.csb.app`
+
+📡 JSON Server API:
+
+/products - dữ liệu món ăn
+
+/users - tài khoản người dùng
+
+/orders - đơn hàng
+
+/carts - giỏ hàng của user
+
+/blogs - bài viết blog
+
+## 🔐 Tài khoản đăng nhập (Demo)
+
+| Loại  | Email           | Mật khẩu |
+| ----- | --------------- | -------- |
+| Admin | admin@gmail.com | admin123 |
+
+> Sử dụng tài khoản trên để đăng nhập và truy cập trang quản trị.
+
+---
+
+## 📦 Cài đặt & chạy project
+
+```bash
+# Clone dự án
+git clone https://github.com/HoainamLe42/Ecommerce-food
+cd food-ecommerce
+
+# Cài dependencies
+npm install
+
+# Chạy frontend
+npm run dev
+
+# Chạy json server
+npm run server
 ```

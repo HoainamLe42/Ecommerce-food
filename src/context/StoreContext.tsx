@@ -1,4 +1,5 @@
-export const API_BASE_URL = 'https://qx6g8d-8080.csb.app';
+// export const API_BASE_URL = 'https://qx6g8d-8080.csb.app';
+export const API_BASE_URL = '/db.json';
 
 import {
     ReactNode,

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { BlogTypes } from '../types/BlogTypes';
-import { API_BASE_URL } from './StoreContext';
+// import { API_BASE_URL } from './StoreContext';
 
 // Định nghĩa kiểu dữ liệu cho context
 interface BlogContextProps {

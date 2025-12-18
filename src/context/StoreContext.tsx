@@ -76,17 +76,35 @@ export const ShoppingCartProvider = ({
     // Get data
     useEffect(() => {
         const fetchProducts = async () => {
+            // try {
+            //     setLoading(true);
+            //     const response = await fetch(`${API_BASE_URL}/products`);
+            //     if (!response.ok) {
+            //         throw new Error(`HTTP lỗi! status: ${response.status}`);
+            //     }
+            //     const data = await response.json();
+            //     setFoods(data);
+
+            //     // Lọc sản phẩm nổi bật
+            //     const featured = data.slice(0, 15);
+            //     setFeaturedProducts(featured);
+            // } catch (error) {
+            //     console.error('Lỗi khi tải sản phẩm:', error);
+            // } finally {
+            //     setLoading(false);
+            // }
+
             try {
                 setLoading(true);
-                const response = await fetch(`${API_BASE_URL}/products`);
+                const response = await fetch('db.json');
                 if (!response.ok) {
                     throw new Error(`HTTP lỗi! status: ${response.status}`);
                 }
                 const data = await response.json();
-                setFoods(data);
+                setFoods(data.products);
 
                 // Lọc sản phẩm nổi bật
-                const featured = data.slice(0, 15);
+                const featured = data.products.slice(0, 15);
                 setFeaturedProducts(featured);
             } catch (error) {
                 console.error('Lỗi khi tải sản phẩm:', error);

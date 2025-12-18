@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Button from '../Button';
 import Popup from '../Popup';
 import Container from '../Container';
-import { API_BASE_URL } from '../../context/StoreContext';
+// import { API_BASE_URL } from '../../context/StoreContext';
 import AOS from 'aos';
 import { LoaderCircle } from 'lucide-react';
 

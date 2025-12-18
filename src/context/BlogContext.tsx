@@ -38,16 +38,30 @@ export const BlogProvider: React.FC<{ children: React.ReactNode }> = ({
     const [loading, setLoading] = useState<boolean>(true);
 
     const fetchBlogPosts = async () => {
+        // try {
+        //     setLoading(true);
+        //     const response = await fetch(`${API_BASE_URL}/blogs`);
+        //     if (!response.ok) {
+        //         throw new Error(`HTTP lỗi! status: ${response.status}`);
+        //     }
+
+        //     const data = await response.json();
+
+        //     setBlogPosts(data);
+        // } catch (error) {
+        //     console.error('Lỗi khi tải Blogs:', error);
+        // } finally {
+        //     setLoading(false);
+        // }
+
         try {
             setLoading(true);
-            const response = await fetch(`${API_BASE_URL}/blogs`);
+            const response = await fetch('db.json');
             if (!response.ok) {
                 throw new Error(`HTTP lỗi! status: ${response.status}`);
             }
-
             const data = await response.json();
-
-            setBlogPosts(data);
+            setBlogPosts(data.blogs);
         } catch (error) {
             console.error('Lỗi khi tải Blogs:', error);
         } finally {

@@ -44,14 +44,28 @@ const Banner = () => {
     // Get data banner images
     useEffect(() => {
         const fetchBannerImages = async () => {
+            // try {
+            //     setLoading(false);
+            //     const response = await fetch(`${API_BASE_URL}/banner`);
+            //     if (!response.ok) {
+            //         throw new Error(`HTTP lỗi! status: ${response.status}`);
+            //     }
+            //     const data = await response.json();
+            //     setBannerImages(data);
+            // } catch (error) {
+            //     console.error('Lỗi khi tải Banner images:', error);
+            // } finally {
+            //     setLoading(true);
+            // }
+
             try {
                 setLoading(false);
-                const response = await fetch(`${API_BASE_URL}/banner`);
+                const response = await fetch(`${API_BASE_URL}`);
                 if (!response.ok) {
                     throw new Error(`HTTP lỗi! status: ${response.status}`);
                 }
                 const data = await response.json();
-                setBannerImages(data);
+                setBannerImages(data.banner);
             } catch (error) {
                 console.error('Lỗi khi tải Banner images:', error);
             } finally {

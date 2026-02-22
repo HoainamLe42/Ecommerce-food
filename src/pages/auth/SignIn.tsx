@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import Container from '../../components/Container';
 import Popup from '../../components/Popup';
 import config from '../../config';
-import { useAuth } from '../../context/AuthContext';
+// import { useAuth } from '../../context/AuthContext';
 import { Eye, EyeOff } from 'lucide-react';
-import { UserFormData } from '../../types/admin/UserTypes';
-import { API_BASE_URL } from '../../context/StoreContext';
+// import { UserFormData } from '../../types/admin/UserTypes';
+// import { API_BASE_URL } from '../../context/StoreContext';
 
 type Errors = {
     email?: string;
@@ -21,7 +21,7 @@ const SignIn = () => {
     //     password: '',
     // });
     const navigate = useNavigate();
-    const { login } = useAuth();
+    // const { login } = useAuth();
 
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
     const [isPassword, setIsPassword] = useState<boolean>(false);
@@ -29,6 +29,8 @@ const SignIn = () => {
 
     const handleOpenPopup = () => setIsPopupOpen(true);
     const handleClosePopup = () => setIsPopupOpen(false);
+
+    console.log(handleOpenPopup);
 
     // const [errors, setErrors] = useState<Partial<UserFormData>>({});
 

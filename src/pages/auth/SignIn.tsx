@@ -9,86 +9,160 @@ import { Eye, EyeOff } from 'lucide-react';
 import { UserFormData } from '../../types/admin/UserTypes';
 import { API_BASE_URL } from '../../context/StoreContext';
 
+type Errors = {
+    email?: string;
+    password?: string;
+    api?: string;
+};
+
 const SignIn = () => {
-    const [formData, setFormData] = useState<UserFormData>({
-        email: '',
-        password: '',
-    });
+    // const [formData, setFormData] = useState<UserFormData>({
+    //     email: '',
+    //     password: '',
+    // });
     const navigate = useNavigate();
     const { login } = useAuth();
 
     const [isPopupOpen, setIsPopupOpen] = useState<boolean>(false);
     const [isPassword, setIsPassword] = useState<boolean>(false);
-    const [message, setMessage] = useState('');
+    // const [message, setMessage] = useState('');
 
     const handleOpenPopup = () => setIsPopupOpen(true);
     const handleClosePopup = () => setIsPopupOpen(false);
 
-    const [errors, setErrors] = useState<Partial<UserFormData>>({});
+    // const [errors, setErrors] = useState<Partial<UserFormData>>({});
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState<Errors>({});
+    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState('');
 
-    const validate = (): boolean => {
-        const newErrors: Partial<UserFormData> = {};
+    // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const { name, value } = e.target;
+    //     setFormData({ ...formData, [name]: value });
+    // };
 
-        if (!formData.email.trim()) {
-            newErrors.email = 'Email không được để trống.';
-        } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.email)
-        ) {
-            newErrors.email = 'Email không hợp lệ.';
+    const validate = (trimmedEmail: string, trimmedPassword: string) => {
+        const newErrors: Errors = {};
+
+        if (!trimmedEmail) {
+            newErrors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(trimmedEmail)) {
+            newErrors.email = 'Invalid email format';
         }
 
-        if (!formData.password.trim()) {
-            newErrors.password = 'Mật khẩu không được để trống.';
+        if (!trimmedPassword) {
+            newErrors.password = 'Password is required';
+        } else if (!/^(?=.*[a-z])(?=.*[A-Z]).{6,}$/.test(trimmedPassword)) {
+            newErrors.password =
+                'Password must be at least 6 characters and include 1 uppercase & 1 lowercase letter';
         }
 
-        setErrors(newErrors);
-
-        return Object.keys(newErrors).length === 0;
+        return newErrors;
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    // Fake API
+    const fakeLoginApi = (email: string, password: string) => {
+        return new Promise<{ message: string }>((resolve, reject) => {
+            setTimeout(() => {
+                if (email === 'admin@gmail.com' && password === '123456Admin') {
+                    resolve({ message: 'ok' });
+                } else {
+                    reject({ message: 'Email or password is incorrect' });
+                }
+            }, 1000);
+        });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (validate()) {
-            try {
-                const response = await fetch(`${API_BASE_URL}/users`);
+        setSuccess('');
+        setErrors({});
 
-                const users = await response.json();
-                console.log(users);
+        // ✅ Trim ở đây
+        const trimmedEmail = email.trim();
+        const trimmedPassword = password.trim();
 
-                const user = users.find(
-                    (user: { email: string; password: string }) =>
-                        user.email === formData.email &&
-                        user.password === formData.password,
-                );
+        const validationErrors = validate(trimmedEmail, trimmedPassword);
 
-                if (user) {
-                    setMessage('Đăng nhập thành công.');
-                    handleOpenPopup();
-
-                    if (user.role === 'admin') {
-                        navigate(config.routes.adminDashboard);
-                    } else {
-                        login(user);
-                        alert('Đăng nhập thành công!');
-                        navigate(config.routes.home);
-                    }
-                } else {
-                    setMessage('Mật khẩu hoặc email không đúng.');
-                }
-            } catch {
-                console.error(errors);
-                setMessage('Lỗi khi đăng nhập. Vui lòng thử lại.');
-            }
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
         }
 
-        // alert(JSON.stringify(formData, null, 2));
+        try {
+            setLoading(true);
+            const response = await fakeLoginApi(trimmedEmail, trimmedPassword);
+            setSuccess(response.message);
+            alert('Đăng nhập thành công!');
+            navigate(config.routes.home);
+        } catch (err: any) {
+            setErrors({ api: err.message });
+        } finally {
+            setLoading(false);
+        }
     };
+
+    // const validate = (): boolean => {
+    //     const newErrors: Partial<UserFormData> = {};
+
+    //     if (!formData.email.trim()) {
+    //         newErrors.email = 'Email không được để trống.';
+    //     } else if (
+    //         !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(formData.email)
+    //     ) {
+    //         newErrors.email = 'Email không hợp lệ.';
+    //     }
+
+    //     if (!formData.password.trim()) {
+    //         newErrors.password = 'Mật khẩu không được để trống.';
+    //     }
+
+    //     setErrors(newErrors);
+
+    //     return Object.keys(newErrors).length === 0;
+    // };
+
+    // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    //     e.preventDefault();
+
+    //     if (validate()) {
+    //         try {
+    //             const response = await fetch(`${API_BASE_URL}/users`);
+
+    //             const users = await response.json();
+    //             console.log(users);
+
+    //             const user = users.find(
+    //                 (user: { email: string; password: string }) =>
+    //                     user.email === formData.email &&
+    //                     user.password === formData.password,
+    //             );
+
+    //             if (user) {
+    //                 setMessage('Đăng nhập thành công.');
+    //                 handleOpenPopup();
+
+    //                 if (user.role === 'admin') {
+    //                     navigate(config.routes.adminDashboard);
+    //                 } else {
+    //                     login(user);
+    //                     alert('Đăng nhập thành công!');
+    //                     navigate(config.routes.home);
+    //                 }
+    //             } else {
+    //                 setMessage('Mật khẩu hoặc email không đúng.');
+    //             }
+    //         } catch {
+    //             console.error(errors);
+    //             setMessage('Lỗi khi đăng nhập. Vui lòng thử lại.');
+    //         }
+    //     }
+
+    //     // alert(JSON.stringify(formData, null, 2));
+    // };
 
     return (
         <div className="bg-white">
@@ -107,8 +181,8 @@ const SignIn = () => {
                                 <label htmlFor="email"></label>
                                 <input
                                     name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                     className="py-2 px-6 mb-3 w-full rounded-full border-[1px] border-gray-400 shadow-sm"
                                     placeholder="Email"
                                     required
@@ -124,14 +198,16 @@ const SignIn = () => {
                                 <input
                                     type={isPassword ? 'text' : 'password'}
                                     name="password"
-                                    value={formData.password}
-                                    onChange={handleChange}
+                                    value={password}
+                                    onChange={(e) =>
+                                        setPassword(e.target.value)
+                                    }
                                     className="py-2 px-6 mb-3 w-full rounded-full border-[1px] border-gray-400 shadow-sm"
                                     placeholder="Mật khẩu"
                                     required
                                 />
 
-                                {formData.password && (
+                                {errors.password && (
                                     <span
                                         onClick={() =>
                                             setIsPassword(!isPassword)
@@ -152,19 +228,31 @@ const SignIn = () => {
                                     </p>
                                 )}
                             </div>
-
-                            {message && (
+                            {/* {message && (
                                 <p className="mt-4 text-center text-red-500">
                                     {message}
                                 </p>
+                            )} */}
+
+                            {/* API Error */}
+                            {errors.api && (
+                                <p className="text-red-600 text-sm mb-3">
+                                    {errors.api}
+                                </p>
                             )}
 
+                            {/* Success */}
+                            {success && (
+                                <p className="text-green-600 text-sm mb-3">
+                                    Login {success}
+                                </p>
+                            )}
                             <Button
                                 type="submit"
                                 className={`w-full rounded-full mt-4 disabled:bg-primary/80`}
-                                disabled={!formData.email || !formData.password}
+                                disabled={loading}
                             >
-                                Đăng nhập
+                                {loading ? 'Loading...' : 'Login'}
                             </Button>
                             <p className="mt-4">
                                 Nếu chưa có tài khoản?{' '}
